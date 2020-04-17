@@ -1,5 +1,6 @@
 package com.mooc.mettingfilm.backend.common.backend.user;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mooc.mettingfilm.backend.common.BackendCommonApplicationTests;
 import com.mooc.mettingfilm.backend.common.dao.entity.MoocBackendUserT;
 import com.mooc.mettingfilm.backend.common.dao.mapper.MoocBackendUserTMapper;
@@ -16,18 +17,24 @@ public class UserTest extends BackendCommonApplicationTests {
     private MoocBackendUserTMapper backendUser;
     @Test
     public void add(){
-        MoocBackendUserT user =new MoocBackendUserT();
-        user.setUserName("admin");
-        user.setUserPwd("admin");
-        user.setUserPhone("13811111111");
-        backendUser.insert(user);
+        for (int i = 0; i <5 ; i++) {
+            MoocBackendUserT user =new MoocBackendUserT();
+            user.setUserName("admin"+i);
+            user.setUserPwd("admin"+i);
+            user.setUserPhone("1381111111"+i);
+            backendUser.insert(user);
+        }
+
     }
 
     @Test
     public void select(){
 //        MoocBackendUserT moocBackendUserT = backendUserTMapper.selectById(2);
 //        System.out.println("moocBackendUserT="+moocBackendUserT);
-        List<MoocBackendUserT> user = backendUser.selectList(null);
+        //查询列表带条件
+        QueryWrapper queryWrapper=new QueryWrapper();
+        queryWrapper.like("user_name","admin");
+        List<MoocBackendUserT> user = backendUser.selectList(queryWrapper);
         user.stream().forEach(
                 System.out::println
         );
@@ -36,13 +43,22 @@ public class UserTest extends BackendCommonApplicationTests {
 
     @Test
     public void update(){
+//        MoocBackendUserT user=new MoocBackendUserT();
+//        user.setUuid(3);
+//        user.setUserName("haha");
+//        user.setUserPwd("haha");
+//        user.setUserPhone("12321234567");
+//
+//        backendUser.updateById(user);
+        QueryWrapper wrapper=new QueryWrapper();
+        wrapper.eq("user_name","admin4");
         MoocBackendUserT user=new MoocBackendUserT();
-        user.setUuid(3);
-        user.setUserName("haha");
-        user.setUserPwd("haha");
-        user.setUserPhone("12321234567");
 
-        backendUser.updateById(user);
+        user.setUserName("admin-update-QueryWrapper");
+        user.setUserPwd("111111");
+        user.setUserPhone("111111111111");
+        backendUser.update(user,wrapper);
+
     }
 
     @Test
