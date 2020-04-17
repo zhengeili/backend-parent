@@ -10,14 +10,14 @@ import java.sql.SQLException;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "com.mooc.meetingfilm.**.dao.mapper")
+@ConfigurationProperties(prefix = "spring.datasource")
 public class DruidProperties {
 
-    private String url = "jdbc:mysql://127.0.0.1:3306/mooc_demo?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC";
+    private String url = "jdbc:mysql://127.0.0.1:3306/mooc_mettingfilm?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC";
 
     private String username = "root";
 
-    private String password = "1234567";
+    private String password = "root";
 
     private String driverClassName = "com.mysql.cj.jdbc.Driver";
 

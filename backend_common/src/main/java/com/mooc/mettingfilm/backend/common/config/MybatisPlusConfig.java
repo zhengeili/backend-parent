@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = {"com.mooc.jiangzh.springbootdemo.dao.mapper"})
+@MapperScan(basePackages = {"com.mooc.mettingfilm.**.dao.mapper"})
 public class MybatisPlusConfig {
 
     @Bean
