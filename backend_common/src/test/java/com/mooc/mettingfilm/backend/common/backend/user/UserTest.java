@@ -1,6 +1,8 @@
 package com.mooc.mettingfilm.backend.common.backend.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mooc.mettingfilm.backend.common.BackendCommonApplicationTests;
 import com.mooc.mettingfilm.backend.common.dao.entity.MoocBackendUserT;
 import com.mooc.mettingfilm.backend.common.dao.mapper.MoocBackendUserTMapper;
@@ -39,6 +41,18 @@ public class UserTest extends BackendCommonApplicationTests {
                 System.out::println
         );
 
+    }
+    @Test
+    public void selectByPage(){
+        Page<MoocBackendUserT> page=new Page<>(1,3);
+
+        //条件
+        QueryWrapper wrapper=new QueryWrapper();
+        wrapper.like("user_name","admin");
+        IPage<MoocBackendUserT> iPage = backendUser.selectPage(page, wrapper);
+        iPage.getRecords().stream().forEach(
+                System.out::println
+        );
     }
 
     @Test
