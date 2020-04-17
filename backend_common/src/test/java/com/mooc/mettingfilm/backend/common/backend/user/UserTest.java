@@ -36,12 +36,18 @@ public class UserTest extends BackendCommonApplicationTests {
 
     @Test
     public void update(){
+        MoocBackendUserT user=new MoocBackendUserT();
+        user.setUuid(3);
+        user.setUserName("haha");
+        user.setUserPwd("haha");
+        user.setUserPhone("12321234567");
 
+        backendUser.updateById(user);
     }
 
     @Test
     public void del(){
-
+        backendUser.deleteById(3);
     }
 
 }
