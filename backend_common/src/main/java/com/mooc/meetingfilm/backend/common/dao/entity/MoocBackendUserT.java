@@ -1,4 +1,4 @@
-package com.mooc.mettingfilm.backend.common.dao.entity;
+package com.mooc.meetingfilm.backend.common.dao.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;

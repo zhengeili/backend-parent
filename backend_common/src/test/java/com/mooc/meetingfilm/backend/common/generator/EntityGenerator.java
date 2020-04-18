@@ -1,4 +1,4 @@
-package com.mooc.mettingfilm.backend.common.generator;
+package com.mooc.meetingfilm.backend.common.generator;
 
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;

@@ -1,14 +1,12 @@
-package com.mooc.mettingfilm.backend.common.backend.user;
+package com.mooc.meetingfilm.backend.common.backend.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.mooc.mettingfilm.backend.common.BackendCommonApplicationTests;
-import com.mooc.mettingfilm.backend.common.dao.entity.MoocBackendUserT;
-import com.mooc.mettingfilm.backend.common.dao.mapper.MoocBackendUserTMapper;
+import com.mooc.meetingfilm.backend.common.BackendCommonApplicationTests;
+import com.mooc.meetingfilm.backend.common.dao.entity.MoocBackendUserT;
+import com.mooc.meetingfilm.backend.common.dao.mapper.MoocBackendUserTMapper;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -53,6 +51,12 @@ public class UserTest extends BackendCommonApplicationTests {
         iPage.getRecords().stream().forEach(
                 System.out::println
         );
+    }
+    @Test
+    public void describeUser(){
+
+        MoocBackendUserT user = backendUser.describeUserByUserName("admin2");
+        System.out.println("user="+user);
     }
 
     @Test

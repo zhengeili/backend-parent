@@ -1,4 +1,4 @@
-package com.mooc.mettingfilm.backend.common.config;
+package com.mooc.meetingfilm.backend.common.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Data;

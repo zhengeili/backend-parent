@@ -1,4 +1,4 @@
-package com.mooc.mettingfilm.backend.common.config;
+package com.mooc.meetingfilm.backend.common.config;
 
 
 import com.alibaba.druid.pool.DruidDataSource;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = {"com.mooc.mettingfilm.**.dao.mapper"})
+@MapperScan(basePackages = {"com.mooc.meetingfilm.**.dao.mapper"})
 public class MybatisPlusConfig {
 
     @Bean
