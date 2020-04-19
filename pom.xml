@@ -11,10 +11,12 @@
     <groupId>com.mooc.meetingfilm</groupId>
     <artifactId>backend-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>backend-parent</name>
     <description>慕课网Meetingfilm的后端运维系统</description>
 
     <modules>
+        <module>backend_user</module>
         <module>backend_common</module>
         <module>backend_utils</module>
     </modules>
@@ -66,11 +68,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <dependency>
                 <groupId>com.mooc.meetingfilm</groupId>
                 <artifactId>backend-utils</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.mooc.meetingfilm</groupId>
                 <artifactId>backend-common</artifactId>
