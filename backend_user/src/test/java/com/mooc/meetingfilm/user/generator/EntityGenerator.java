@@ -1,4 +1,4 @@
-package com.mooc.meetingfilm.backend.common.generator;
+package com.mooc.meetingfilm.user.generator;
 
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -9,11 +9,12 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.BeetlTemplateEngine;
-//import org.junit.Test;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+
+//import org.junit.Test;
 
 /*
     数据层内容生成
@@ -21,7 +22,7 @@ import java.util.Map;
 public class EntityGenerator {
 
     // 生成输出目录，定位到工程的java目录下
-    private String outputDir = "D:\\java\\backend_parent\\backend_common\\src\\main\\java";
+    private String outputDir = "D:\\java\\backend_parent\\backend_user\\src\\main\\java";
     // 生成类的作者
     private String author = "wjw";
     // 数据源相关配置
@@ -30,7 +31,7 @@ public class EntityGenerator {
     private String userName = "root";
     private String userPwd = "root";
     // DAO的包路径
-    private String daoPackage = "com.mooc.mettingfilm.backend.common";
+    private String daoPackage = "com.mooc.meetingfilm.user.dao";
     // 待生成的表名，注意是覆盖更新
     private static String[] tableNames;
 
