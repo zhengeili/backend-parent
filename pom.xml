@@ -8,14 +8,15 @@
         <version>2.2.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.mooc.mettingfilm</groupId>
+    <groupId>com.mooc.meetingfilm</groupId>
     <artifactId>backend-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>backend-parent</name>
-    <description>慕课网Mettingfilm的后端运维系统</description>
+    <description>慕课网Meetingfilm的后端运维系统</description>
 
     <modules>
         <module>backend_common</module>
+        <module>backend_utils</module>
     </modules>
 
     <properties>
@@ -64,6 +65,16 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.mooc.meetingfilm</groupId>
+                <artifactId>backend-utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mooc.meetingfilm</groupId>
+                <artifactId>backend-common</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <!-- Mybatis-plus时引入的配置 start-->
             <!-- mybatis-plus依赖 -->
