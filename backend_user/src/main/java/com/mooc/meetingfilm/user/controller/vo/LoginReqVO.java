@@ -2,7 +2,7 @@ package com.mooc.meetingfilm.user.controller.vo;
 
 import com.mooc.meetingfilm.utils.exception.CommonServiceException;
 import com.mooc.meetingfilm.utils.util.ToolUtils;
-import com.mooc.meetingfilm.utils.vo.BaseRequestVO;
+import com.mooc.meetingfilm.utils.common.vo.BaseRequestVO;
 import lombok.Data;
 
 @Data

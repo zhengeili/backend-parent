@@ -1,4 +1,4 @@
-package com.mooc.meetingfilm.utils.vo;
+package com.mooc.meetingfilm.utils.common.vo;
 
 import com.mooc.meetingfilm.utils.exception.CommonServiceException;
 

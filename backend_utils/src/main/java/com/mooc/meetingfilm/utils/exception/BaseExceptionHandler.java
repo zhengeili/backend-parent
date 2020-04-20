@@ -1,6 +1,6 @@
 package com.mooc.meetingfilm.utils.exception;
 
-import com.mooc.meetingfilm.utils.vo.BaseResponseVO;
+import com.mooc.meetingfilm.utils.common.vo.BaseResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
