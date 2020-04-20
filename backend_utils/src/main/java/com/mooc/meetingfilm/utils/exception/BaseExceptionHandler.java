@@ -4,6 +4,7 @@ import com.mooc.meetingfilm.utils.vo.BaseResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 public class BaseExceptionHandler {
 
     @ExceptionHandler(CommonServiceException.class)
+    @ResponseBody
     public BaseResponseVO serviceExceptionHandelr(HttpServletRequest request,CommonServiceException e){
 
         log.error("CommonSerException, Code{}, message",e.getCode(),e.getMessage());

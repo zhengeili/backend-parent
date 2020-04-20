@@ -1,8 +1,10 @@
 package com.mooc.meetingfilm.user.controller;
 
 import com.mooc.meetingfilm.user.controller.vo.LoginReqVO;
+import com.mooc.meetingfilm.user.service.UserServiceAPI;
 import com.mooc.meetingfilm.utils.exception.CommonServiceException;
 import com.mooc.meetingfilm.utils.vo.BaseResponseVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,20 +14,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping(value="/user",produces = "application/json;charset=UTF-8")
 public class UserController {
-
+    @Autowired
+    private UserServiceAPI serviceAPI;
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public BaseResponseVO login(@RequestBody LoginReqVO reqVO) throws CommonServiceException {
 
         //数据验证
         reqVO.checkParam();
 
+        //验证用户名和密码是否正确
+        String userId=serviceAPI.checkUserLogin(reqVO.getUsername(),reqVO.getPassword());
+
         //random key token
         Map<String,String> result=new HashMap<>();
         result.put("randomkey","");
         result.put("token","");
 
-        return null;
+        return BaseResponseVO.success(result);
     }
 }

@@ -14,7 +14,7 @@ public class LoginReqVO extends BaseRequestVO {
     public void checkParam() throws CommonServiceException {
         // TODO 验证数据合法性
         if(ToolUtils.strIsNull(username) || ToolUtils.strIsNull(password)){
-            throw new CommonServiceException(404,"用户名或密码不能为空");
+            throw new CommonServiceException(404,"username或password不能为空");//username and password must be required
         }
     }
 }
