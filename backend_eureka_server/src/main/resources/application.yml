@@ -1,1 +1,16 @@
 
+server:
+  port: 8762
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  service-url:
+    defaultZone: http://localhost:8762/eureka/
+
+logging:
+  config: classpath:logback.xml
