@@ -10,7 +10,14 @@ public class ConsumerServiceImpl implements ConsumerServiceAPI {
     private RestTemplate restTemplate;
     @Override
     public String sayHello(String message) {
+        //准备工作
+        String hostname="localhost";
+        int port=7101;//这是provider的端口
+        String uri="/provider/sayhello?message="+message;
 
-        return null;
+        String url="http://"+hostname+":"+port+uri;
+        String result = restTemplate.getForObject(url, String.class);
+
+        return result;
     }
 }
