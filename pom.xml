@@ -17,6 +17,7 @@
 
     <modules>
         <module>backend_user</module>
+        <module>backend_film</module>
         <module>backend_common</module>
         <module>backend_utils</module>
         <module>backend_show</module>
