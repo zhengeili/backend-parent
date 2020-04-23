@@ -3,12 +3,14 @@ package com.mooc.meetingfilm.film.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Maps;
 import com.mooc.meetingfilm.film.controller.vo.DescribeActorsRespVO;
+import com.mooc.meetingfilm.film.controller.vo.DescribeFilmRespVO;
 import com.mooc.meetingfilm.film.controller.vo.DescribeFilmsRespVO;
 import com.mooc.meetingfilm.film.service.FilmServiceAPI;
 import com.mooc.meetingfilm.utils.common.vo.BasePageVO;
 import com.mooc.meetingfilm.utils.common.vo.BaseResponseVO;
 import com.mooc.meetingfilm.utils.exception.CommonServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +45,15 @@ public class FilmController {
 
         Map<String,Object> actors=describePageResult(results,"films");
         return BaseResponseVO.success(actors);
+    }
+
+    @RequestMapping(value = "/{filmId}",method = RequestMethod.GET)
+    public BaseResponseVO decribeFilmById(@PathVariable("filmId") String filmId) throws CommonServiceException {
+        DescribeFilmRespVO describeFilmRespVO=filmServiceAPI.describeFilmById(filmId);
+        if (describeFilmRespVO==null){
+            return BaseResponseVO.success();
+        }
+        return BaseResponseVO.success(describeFilmRespVO);
     }
     //获取分页对象的公共接口
     private Map<String,Object> describePageResult(IPage page, String title){
