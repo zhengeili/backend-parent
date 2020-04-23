@@ -1,5 +1,8 @@
 package com.mooc.meetingfilm.film.dao.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mooc.meetingfilm.film.controller.vo.DescribeActorsRespVO;
 import com.mooc.meetingfilm.film.dao.entity.MoocActorT;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -12,5 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-04-22
  */
 public interface MoocActorTMapper extends BaseMapper<MoocActorT> {
-
+    IPage<DescribeActorsRespVO> describeActors(Page<DescribeActorsRespVO> page);
 }
