@@ -5,15 +5,13 @@ import com.google.common.collect.Maps;
 import com.mooc.meetingfilm.film.controller.vo.DescribeActorsRespVO;
 import com.mooc.meetingfilm.film.controller.vo.DescribeFilmRespVO;
 import com.mooc.meetingfilm.film.controller.vo.DescribeFilmsRespVO;
+import com.mooc.meetingfilm.film.controller.vo.FilmSavedReqVO;
 import com.mooc.meetingfilm.film.service.FilmServiceAPI;
 import com.mooc.meetingfilm.utils.common.vo.BasePageVO;
 import com.mooc.meetingfilm.utils.common.vo.BaseResponseVO;
 import com.mooc.meetingfilm.utils.exception.CommonServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -55,6 +53,13 @@ public class FilmController {
         }
         return BaseResponseVO.success(describeFilmRespVO);
     }
+
+    @RequestMapping(value = "/film:add",method = RequestMethod.POST)
+    public BaseResponseVO saveFilmInfo(@RequestBody FilmSavedReqVO filmSavedReqVO) throws CommonServiceException {
+        filmServiceAPI.saveFilm(filmSavedReqVO);
+        return BaseResponseVO.success();
+    }
+
     //获取分页对象的公共接口
     private Map<String,Object> describePageResult(IPage page, String title){
         Map<String,Object> result= Maps.newHashMap();
