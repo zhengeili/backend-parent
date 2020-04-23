@@ -35,9 +35,16 @@ public class FilmServiceImpl implements FilmServiceAPI {
         return actorTMapper.describeActors(new Page<>(nowPage,pageSize));
     }
 
+    /**
+     * 影片列表查询
+     * @param nowPage
+     * @param pageSize
+     * @return
+     * @throws CommonServiceException
+     */
     @Override
     public IPage<DescribeFilmsRespVO> describeFilms(int nowPage, int pageSize) throws CommonServiceException {
-        return null;
+        return filmTMapper.describeFilms(new Page<>(nowPage,pageSize));
     }
 
     @Override

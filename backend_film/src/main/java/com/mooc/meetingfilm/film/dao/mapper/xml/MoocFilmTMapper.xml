@@ -18,4 +18,18 @@
         <result column="film_time" property="filmTime" />
         <result column="film_status" property="filmStatus" />
     </resultMap>
+    <select id="describeFilms" resultType="com.mooc.meetingfilm.film.controller.vo.DescribeFilmsRespVO">
+      select
+        film.`UUID` AS filmId,
+        film.`film_status` AS filmStatus,
+        info.`film_en_name` AS filmEnName,
+        film.`film_score` AS filmScore,
+        film.`film_preSaleNum` AS preSaleNum,
+        film.`film_box_office` AS boxOffice,
+        film.`film_time` AS filmTime,
+        info.`film_length` AS filmLength,
+        film.`img_address` AS mainImg
+    from mooc_film_t film
+    left join mooc_film_info_t info on film.`UUID`=info.`film_id`
+    </select>
 </mapper>
