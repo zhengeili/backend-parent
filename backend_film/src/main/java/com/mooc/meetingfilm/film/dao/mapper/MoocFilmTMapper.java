@@ -6,6 +6,7 @@ import com.mooc.meetingfilm.film.controller.vo.DescribeFilmRespVO;
 import com.mooc.meetingfilm.film.controller.vo.DescribeFilmsRespVO;
 import com.mooc.meetingfilm.film.dao.entity.MoocFilmT;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -18,5 +19,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface MoocFilmTMapper extends BaseMapper<MoocFilmT> {
 
     IPage<DescribeFilmsRespVO> describeFilms(Page page);
+
+    DescribeFilmRespVO describeFilmById(@Param("filmId") String filmId);
 
 }

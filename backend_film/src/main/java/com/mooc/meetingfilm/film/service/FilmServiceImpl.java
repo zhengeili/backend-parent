@@ -47,9 +47,15 @@ public class FilmServiceImpl implements FilmServiceAPI {
         return filmTMapper.describeFilms(new Page<>(nowPage,pageSize));
     }
 
+    /**
+     * 根据主键获取电影详情
+     * @param filmId
+     * @return
+     * @throws CommonServiceException
+     */
     @Override
     public DescribeFilmRespVO describeFilmById(String filmId) throws CommonServiceException {
-        return null;
+        return filmTMapper.describeFilmById(filmId);
     }
 
     @Override
