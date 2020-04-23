@@ -11,8 +11,8 @@ public class FilmSavedReqVO extends BaseRequestVO {
     private String filmName;
     private String filmEnName;
     private String mainImgAddress;
-    private String filmScore;
-    private String filmScorers;
+    private String filmScore;//电影评分
+    private String filmScorers;//评分人数
     private String preSaleNum;
     private String boxOffice;
     private String filmTypeId;

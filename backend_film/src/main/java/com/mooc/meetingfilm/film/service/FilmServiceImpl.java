@@ -15,6 +15,7 @@ import com.mooc.meetingfilm.film.dao.mapper.MoocFilmActorTMapper;
 import com.mooc.meetingfilm.film.dao.mapper.MoocFilmInfoTMapper;
 import com.mooc.meetingfilm.film.dao.mapper.MoocFilmTMapper;
 import com.mooc.meetingfilm.utils.exception.CommonServiceException;
+import com.mooc.meetingfilm.utils.util.ToolUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,46 +66,55 @@ public class FilmServiceImpl implements FilmServiceAPI {
 
     @Override
     @Transactional(rollbackFor = Exception.class)//用到事务，因为这里要做三个表的保存
-    public void saveFilm(FilmSavedReqVO filmSavedReqVO) throws CommonServiceException {
+    public void saveFilm(FilmSavedReqVO reqVO) throws CommonServiceException {
         try{
             // 保存电影主表
             MoocFilmT film=new MoocFilmT();
-            film.setFilmName("");
-            film.setFilmType(0);
-            film.setImgAddress("");
-            film.setFilmScore("");
-            film.setFilmPresalenum(0);
-            film.setFilmBoxOffice(0);
-            film.setFilmSource(0);
-            film.setFilmCats("");
-            film.setFilmArea(0);
-            film.setFilmDate(0);
-            film.setFilmTime(LocalDateTime.now());
-            film.setFilmStatus(0);
+            film.setFilmName(reqVO.getFilmName());
+            film.setFilmType(ToolUtils.str2Int(reqVO.getFilmTypeId()));
+            film.setImgAddress(reqVO.getMainImgAddress());
+            film.setFilmScore(reqVO.getFilmScore());//	电影评分
+            //film.setFilmScorers();//电影评分人数
+            film.setFilmPresalenum(ToolUtils.str2Int(reqVO.getPreSaleNum()));//	电影预售票房
+            film.setFilmBoxOffice(ToolUtils.str2Int(reqVO.getBoxOffice()));
+            film.setFilmSource(ToolUtils.str2Int(reqVO.getFilmSourceId()));
+            film.setFilmCats(reqVO.getFilmCatIds());
+            film.setFilmArea(ToolUtils.str2Int(reqVO.getAreaId()));
+            film.setFilmDate(ToolUtils.str2Int(reqVO.getDateId()));
+            film.setFilmTime(ToolUtils.str2LocalDateTime(reqVO.getFilmTime()));
+            film.setFilmStatus(ToolUtils.str2Int(reqVO.getFilmStatus()));
 
 
             filmTMapper.insert(film);
             // 保存电影子表
             MoocFilmInfoT filmInfo=new MoocFilmInfoT();
             filmInfo.setFilmId(film.getUuid()+"");
-            filmInfo.setFilmEnName("");
-            filmInfo.setFilmScore("");
-            filmInfo.setFilmScoreNum(0);
-            filmInfo.setFilmLength(0);
-            filmInfo.setBiography("");
-            filmInfo.setDirectorId(0);
-            filmInfo.setFilmImgs("");
+            filmInfo.setFilmEnName(reqVO.getFilmEnName());
+
+            filmInfo.setFilmScore(reqVO.getFilmScore());
+            filmInfo.setFilmScoreNum(ToolUtils.str2Int(reqVO.getFilmScorers()));
+            filmInfo.setFilmLength(ToolUtils.str2Int(reqVO.getFilmLength()));
+            filmInfo.setBiography(reqVO.getBiography());
+            filmInfo.setDirectorId(ToolUtils.str2Int(reqVO.getDirectorId()));
+            filmInfo.setFilmImgs(reqVO.getFilmImgs());
 
 
             filmInfoTMapper.insert(filmInfo);
-            // 保存演员映射表
-            MoocFilmActorT filmActor=new MoocFilmActorT();
-            filmActor.setFilmId(film.getUuid());
-            filmActor.setActorId(0);
-            filmActor.setRoleName("");
 
+            String[] actorId=reqVO.getActIds().split("#");
+            String[] roleNames=reqVO.getRoleNames().split("#");
+            if(actorId.length!=roleNames.length){
+                throw new CommonServiceException(500,"演员和角色名数量不匹配");
+            }
 
-            moocFilmActorTMapper.insert(filmActor);
+            for (int i = 0; i <actorId.length ; i++) {
+                // 保存演员映射表
+                MoocFilmActorT filmActor=new MoocFilmActorT();
+                filmActor.setFilmId(film.getUuid());
+                filmActor.setActorId(ToolUtils.str2Int(actorId[i]));
+                filmActor.setRoleName(roleNames[i]);
+                moocFilmActorTMapper.insert(filmActor);
+            }
 
         }catch (Exception e){
             throw new CommonServiceException(500,e.getMessage());//把所有的异常都抛出
