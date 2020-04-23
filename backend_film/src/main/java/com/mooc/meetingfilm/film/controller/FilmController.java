@@ -3,6 +3,7 @@ package com.mooc.meetingfilm.film.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Maps;
 import com.mooc.meetingfilm.film.controller.vo.DescribeActorsRespVO;
+import com.mooc.meetingfilm.film.controller.vo.DescribeFilmsRespVO;
 import com.mooc.meetingfilm.film.service.FilmServiceAPI;
 import com.mooc.meetingfilm.utils.common.vo.BasePageVO;
 import com.mooc.meetingfilm.utils.common.vo.BaseResponseVO;
@@ -31,6 +32,16 @@ public class FilmController {
         IPage<DescribeActorsRespVO> results=filmServiceAPI.describeActors(basePageVO.getNowPage(),basePageVO.getPageSize());
 
         Map<String,Object> actors=describePageResult(results,"actors");
+        return BaseResponseVO.success(actors);
+    }
+    @RequestMapping(value = "/films",method = RequestMethod.GET)
+    public BaseResponseVO decribeFilms(BasePageVO basePageVO) throws CommonServiceException {
+        //检查传参
+        basePageVO.checkParam();
+        //调用逻辑层，获取范虎参数。
+        IPage<DescribeFilmsRespVO> results=filmServiceAPI.describeFilms(basePageVO.getNowPage(),basePageVO.getPageSize());
+
+        Map<String,Object> actors=describePageResult(results,"films");
         return BaseResponseVO.success(actors);
     }
     //获取分页对象的公共接口
