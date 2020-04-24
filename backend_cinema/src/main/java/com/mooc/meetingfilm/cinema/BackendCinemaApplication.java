@@ -1,4 +1,4 @@
-package com.mooc.meetingfilm.film;
+package com.mooc.meetingfilm.cinema;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -10,10 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
 @MapperScan(basePackages = {"com.mooc.meetingfilm.film.dao"})
 @EnableDiscoveryClient
 @SpringBootApplication
-public class BackendFilmApplication {
+public class BackendCinemaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BackendFilmApplication.class, args);
+        SpringApplication.run(BackendCinemaApplication.class, args);
     }
 
 }
