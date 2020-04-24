@@ -81,7 +81,7 @@ public class FilmServiceImpl implements FilmServiceAPI {
             film.setFilmCats(reqVO.getFilmCatIds());
             film.setFilmArea(ToolUtils.str2Int(reqVO.getAreaId()));
             film.setFilmDate(ToolUtils.str2Int(reqVO.getDateId()));
-            film.setFilmTime(ToolUtils.str2LocalDateTime(reqVO.getFilmTime()));
+            film.setFilmTime(ToolUtils.str2LocalDateTime(reqVO.getFilmTime()+" 00:00:00"));
             film.setFilmStatus(ToolUtils.str2Int(reqVO.getFilmStatus()));
 
 

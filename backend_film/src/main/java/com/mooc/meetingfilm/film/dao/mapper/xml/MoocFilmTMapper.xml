@@ -54,5 +54,6 @@
     from mooc_film_t film
     LEFT JOIN mooc_film_info_t info
     on film.`UUID`=info.`film_id`
+    where film.`uuid`=#{filmId}
     </select>
 </mapper>

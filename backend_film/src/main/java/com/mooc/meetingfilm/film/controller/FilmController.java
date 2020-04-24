@@ -34,7 +34,7 @@ public class FilmController {
         Map<String,Object> actors=describePageResult(results,"actors");
         return BaseResponseVO.success(actors);
     }
-    @RequestMapping(value = "/films",method = RequestMethod.GET)
+    @RequestMapping(value = "",method = RequestMethod.GET)
     public BaseResponseVO decribeFilms(BasePageVO basePageVO) throws CommonServiceException {
         //检查传参
         basePageVO.checkParam();
