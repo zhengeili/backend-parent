@@ -1,5 +1,6 @@
 package com.mooc.meetingfilm.hall.dao.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mooc.meetingfilm.hall.controller.vo.HallsRepVO;
@@ -18,5 +19,5 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface MoocFieldTMapper extends BaseMapper<MoocFieldT> {
 
-    IPage<HallsRespVO> decribeHalls(Page<HallsRespVO> page,@Param("cinemaId") String cinemaId);
+    IPage<HallsRespVO> decribeHalls(Page<HallsRepVO> page,@Param("ew") QueryWrapper queryWrapper);
 }
