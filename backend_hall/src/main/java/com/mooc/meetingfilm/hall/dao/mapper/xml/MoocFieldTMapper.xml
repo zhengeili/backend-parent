@@ -13,4 +13,18 @@
         <result column="hall_name" property="hallName" />
         <result column="price" property="price" />
     </resultMap>
+    <select id="decribeHalls" resultType="com.mooc.meetingfilm.hall.controller.vo.HallsRespVO">
+      SELECT
+        (SELECT cinema_name from mooc_cinema_t c WHERE c.`UUID` = fie.cinema_id) as cinemaName,
+        fie.hall_name AS hallName,
+        (SELECT film_name from mooc_film_t f where f.`UUID`=fie.film_id) AS filmName,
+        (SELECT show_name FROM mooc_hall_dict_t d where d.`UUID`=fie.hall_id) AS hallTypeName,
+        fie.begin_time AS beginTime,
+        fie.end_time AS endTime,
+        fie.price AS filmPrice
+        FROM mooc_field_t fie
+        <where>
+
+        </where>
+    </select>
 </mapper>
