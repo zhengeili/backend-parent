@@ -6,10 +6,14 @@ import com.mooc.meetingfilm.hall.controller.vo.HallsRepVO;
 import com.mooc.meetingfilm.hall.controller.vo.HallsRespVO;
 import com.mooc.meetingfilm.utils.exception.CommonServiceException;
 
-public interface HallServiceAPI {
-    //获取全部播放厅接口
-    IPage<HallsRespVO> describeHalls(HallsRepVO hallsReqVO) throws CommonServiceException;
+public class HallServiceImpl implements HallServiceAPI{
+    @Override
+    public IPage<HallsRespVO> describeHalls(HallsRepVO hallsReqVO) throws CommonServiceException {
+        return null;
+    }
 
-    //保存影厅信息
-    void saveHall(HallSavedReqVO hallSavedReqVO) throws CommonServiceException;
+    @Override
+    public void saveHall(HallSavedReqVO hallSavedReqVO) throws CommonServiceException {
+
+    }
 }

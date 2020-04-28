@@ -2,12 +2,14 @@ package com.mooc.meetingfilm.hall.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Maps;
+import com.mooc.meetingfilm.hall.controller.vo.HallSavedReqVO;
 import com.mooc.meetingfilm.hall.controller.vo.HallsRepVO;
 import com.mooc.meetingfilm.hall.controller.vo.HallsRespVO;
 import com.mooc.meetingfilm.hall.service.HallServiceAPI;
 import com.mooc.meetingfilm.utils.common.vo.BaseResponseVO;
 import com.mooc.meetingfilm.utils.exception.CommonServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +22,16 @@ public class HallController {
 
     @Autowired
     private HallServiceAPI hallServiceAPI;
+
+    @RequestMapping(value = "/hall:add",method = RequestMethod.POST)
+    public BaseResponseVO saveHall(@RequestBody HallSavedReqVO reqVO) throws CommonServiceException {
+
+        reqVO.checkParam();
+
+        hallServiceAPI.saveHall(reqVO);
+
+        return BaseResponseVO.success();
+    }
 
     /**
      * 获取播放厅列表
