@@ -1,5 +1,6 @@
 package com.mooc.meetingfilm.hall.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -12,7 +13,11 @@ import com.mooc.meetingfilm.hall.dao.mapper.MoocFieldTMapper;
 import com.mooc.meetingfilm.hall.dao.mapper.MoocHallFilmInfoTMapper;
 import com.mooc.meetingfilm.utils.exception.CommonServiceException;
 import com.mooc.meetingfilm.utils.util.ToolUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 
@@ -23,6 +28,11 @@ public class HallServiceImpl implements HallServiceAPI{
     @Resource
     private MoocHallFilmInfoTMapper hallFilmInfoTMapper;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private LoadBalancerClient eurekaClient;
     /**
      * 查询影厅列表
      * @param hallsReqVO
@@ -68,14 +78,29 @@ public class HallServiceImpl implements HallServiceAPI{
         hallFilmInfoTMapper.insert(hallFilmInfo);
     }
     private MoocHallFilmInfoT describeFilmInfo(String filmId) throws  CommonServiceException{
+
+        //get REGISTER
+        ServiceInstance choose = eurekaClient.choose("film-service");
+
+        //组织调用参数
+        String hostName = choose.getHost();
+        int port=choose.getPort();
+        String uri="/films/"+filmId;
+        String url="http://"+hostName+":"+port+uri;
+        //通过restTemplate调用影片服务
+        JSONObject baseResponseVO = restTemplate.getForObject(url, JSONObject.class);
+        //解析返回值
+        JSONObject dataJson = baseResponseVO.getJSONObject("data");
+
+        //组织参数
         MoocHallFilmInfoT hallFilmInfo=new MoocHallFilmInfoT();
-        hallFilmInfo.setFilmId(0);
-        hallFilmInfo.setFilmName("");
-        hallFilmInfo.setFilmLength("");
-        hallFilmInfo.setFilmCats("");
+        hallFilmInfo.setFilmId(dataJson.getIntValue("filmId"));
+        hallFilmInfo.setFilmName(dataJson.getString("filmName"));
+        hallFilmInfo.setFilmLength(dataJson.getString("filmLength"));
+        hallFilmInfo.setFilmCats(dataJson.getString("filmCats"));
         //hallFilmInfo.setFilmLanguage("");//默认生成好的，这里不再赋值
-        hallFilmInfo.setActors("");
-        hallFilmInfo.setImgAddress("");
+        hallFilmInfo.setActors(dataJson.getString("actors"));
+        hallFilmInfo.setImgAddress(dataJson.getString("imgAddress"));
 
         return  hallFilmInfo;
     }
