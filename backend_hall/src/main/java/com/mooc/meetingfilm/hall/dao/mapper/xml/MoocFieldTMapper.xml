@@ -23,6 +23,6 @@
         fie.end_time AS endTime,
         fie.price AS filmPrice
         FROM mooc_field_t fie
-        ${eq.customSqlSegment}
+        ${ew.customSqlSegment}
     </select>
 </mapper>
