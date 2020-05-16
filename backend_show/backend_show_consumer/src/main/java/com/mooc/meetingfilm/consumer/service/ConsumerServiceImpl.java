@@ -26,7 +26,9 @@ public class ConsumerServiceImpl implements ConsumerServiceAPI {
         String hostname=choose.getHost();
         int port=choose.getPort();
         String uri="/provider/sayhello?message="+message;
-        String url="http://"+hostname+":"+port+uri;
+        //String url="http://"+hostname+":"+port+uri;
+        String url="http://hello-service-provider:"+port+uri;
+
         String result = restTemplate.getForObject(url, String.class);
 
         return result;
