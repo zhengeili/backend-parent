@@ -1,5 +1,6 @@
 package com.mooc.meetingfilm.consumer.config;
 
+import com.mooc.meetingfilm.consumer.ribbon.rules.MyRule;
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
 import com.netflix.loadbalancer.RoundRobinRule;
@@ -18,6 +19,6 @@ public class RestConfig {
 
     @Bean
     public IRule iRule(){
-        return new RoundRobinRule();
+        return new MyRule();
     }
 }
