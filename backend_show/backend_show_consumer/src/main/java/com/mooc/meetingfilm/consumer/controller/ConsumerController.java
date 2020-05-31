@@ -26,11 +26,11 @@ public class ConsumerController {
         return providerApi.invokerProviderController(message);
     }
 
-    @RequestMapping(value = "/sayhello/post")
-    public String sayHelloPost(String author, String providerId, UserModel userModel){
-        log.info("author:{},providerId：{},userModel:{}",author,providerId,userModel);
-        return providerApi.providerPost(author,providerId,userModel);
-    }
+//    @RequestMapping(value = "/sayhello/post")
+//    public String sayHelloPost(String author, String providerId, UserModel userModel){
+//        log.info("author:{},providerId：{},userModel:{}",author,providerId,userModel);
+//        return providerApi.providerPost(author,providerId,userModel);
+//    }
 
     @RequestMapping(value = "/sayhello")
     public String sayHello(String message){

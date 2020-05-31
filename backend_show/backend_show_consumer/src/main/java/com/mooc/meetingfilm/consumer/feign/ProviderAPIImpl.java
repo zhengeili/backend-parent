@@ -12,8 +12,8 @@ public class ProviderAPIImpl implements ProviderApi {
         return null;
     }
 
-    @Override
-    public String providerPost(String author, String providerId, UserModel userModel) {
-        return null;
-    }
+//    @Override
+//    public String providerPost(String author, String providerId, UserModel userModel) {
+//        return null;
+//    }
 }
