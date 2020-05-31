@@ -7,16 +7,17 @@ import feign.RequestLine;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "providerTest",
+@FeignClient(name = "hello-service-provider",
         path = "/provider",
-        configuration = FeignHelloConf.class,
-        url = "http://localhost:7101",
-        primary = true)
+        primary = true
+        //configuration = FeignHelloConf.class,
+        //url = "http://localhost:7101",
+        )
 public interface ProviderApi {
-//    @RequestMapping(value = "/sayhello", method = RequestMethod.GET)
-//    String invokerProviderController(@RequestParam("message") String message);
-    @RequestLine("GET /sayhello?message={message}")
-    String invokerProviderController(@Param("message") String message);
+    @RequestMapping(value = "/sayhello", method = RequestMethod.GET)
+    String invokerProviderController(@RequestParam("message") String message);
+//    @RequestLine("GET /sayhello?message={message}")
+//    String invokerProviderController(@Param("message") String message);
 //    @RequestMapping(value = "/{providerId}/sayhello", method = RequestMethod.POST)
 //    String providerPost(
 //            @RequestHeader("author") String author,
