@@ -17,3 +17,6 @@ spring:
     name: hello-service-consumer
 logging:
   config: classpath:logback.xml
+feign:
+  hystrix:
+    enabled: true

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "hello-service-provider",
         path = "/provider",
+        fallbackFactory = FallbackFactory.class,
         primary = true
         //configuration = FeignHelloConf.class,
         //url = "http://localhost:7101",
