@@ -20,3 +20,5 @@ logging:
 feign:
   hystrix:
     enabled: true
+  httpclient:
+    enabled: true
