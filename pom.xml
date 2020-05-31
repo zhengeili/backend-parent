@@ -18,6 +18,10 @@
     <modules>
         <module>backend_user</module>
         <module>backend_film</module>
+        <module>backend_cinema</module>
+        <module>backend_hall</module>
+
+        <module>backend_api</module>
         <module>backend_common</module>
         <module>backend_utils</module>
         <module>backend_show</module>
@@ -104,6 +108,11 @@
             <dependency>
                 <groupId>com.mooc.meetingfilm</groupId>
                 <artifactId>backend-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mooc.meetingfilm</groupId>
+                <artifactId>backend-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- Mybatis-plus时引入的配置 start-->
