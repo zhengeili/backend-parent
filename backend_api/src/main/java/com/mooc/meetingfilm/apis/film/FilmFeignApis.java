@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public interface FilmFeignApis {
 
-    @RequestMapping(value = "/{filmId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/films/{filmId}",method = RequestMethod.GET)
     BaseResponseVO<DescribeFilmRespVO> decribeFilmById(@PathVariable("filmId") String filmId) throws CommonServiceException;
 }
