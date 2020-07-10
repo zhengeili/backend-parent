@@ -8,8 +8,8 @@ eureka:
 logging:
   config: classpath:logback.xml
 zuul:
-  routes:
-    film-service:
-     path: /film-api/**
+  routes: ## 路由规则
+    film-service: ## application.name  -> 服务名称
+     path: /film-api/** ## 匹配规则
     cinema-servie:
-      path: /cinema-api/**
+     path: /cinema-api/**
